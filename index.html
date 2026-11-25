@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Northbridge Realty</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="navbar">
+      <a class="brand" href="#">Northbridge<span>Realty</span></a>
+
+      <nav aria-label="Main navigation">
+        <a href="#properties">Properties</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+      </nav>
+
+      <a class="button" href="#contact">Book a consultation</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <p class="eyebrow">REAL ESTATE, REDEFINED</p>
+          <h1>Discover a place<br />you'll call home.</h1>
+          <p class="intro">
+            Personal guidance for buyers, sellers, and renters.
+          </p>
+
+          <form id="search-form" class="search">
+            <input
+              id="location"
+              type="search"
+              placeholder="City or neighborhood"
+              aria-label="City or neighborhood"
+            />
+            <select id="property-type" aria-label="Property type">
+              <option value="">All properties</option>
+              <option value="House">House</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Townhouse">Townhouse</option>
+            </select>
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="properties" class="properties">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CURATED LISTINGS</p>
+            <h2>Featured properties</h2>
+          </div>
+        </div>
+
+        <div id="property-grid" class="grid"></div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
+
+root {
+  --ink: #152d27;
+  --cream: #f3f0e8;
+  --green: #315e50;
+  --gold: #c99a63;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--cream);
+  font-family: Inter, Arial, sans-serif;
+}
+
+.navbar {
+  height: 78px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 6%;
+  background: var(--cream);
+}
+
+.brand {
+  margin-right: auto;
+  color: var(--ink);
+  text-decoration: none;
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.brand span {
+  color: var(--gold);
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+}
+
+nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.button {
+  padding: 13px 18px;
+  color: var(--white);
+  background: var(--green);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.hero {
+  min-height: 520px;
+  display: grid;
+  align-items: center;
+  padding: 80px 8%;
+  color: var(--white);
+  background:
+    linear-gradient(90deg, rgba(15, 43, 34, 0.82), rgba(15, 43, 34, 0.18)),
+    url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c");
+  background-size: cover;
+  background-position: center;
+}
+
+.eyebrow {
+  letter-spacing: 3px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.hero h1 {
+  max-width: 700px;
+  margin: 14px 0 20px;
+  font-family: Georgia, serif;
+  font-size: clamp(54px, 7vw, 86px);
+  font-weight: 500;
+  line-height: 0.95;
+}
+
+.intro {
+  margin-bottom: 32px;
+  font-size: 18px;
+}
+
+.search {
+  max-width: 730px;
+  display: grid;
+  grid-template-columns: 1fr 180px auto;
+  background: var(--white);
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.search input,
+.search select {
+  min-height: 48px;
+  border: 0;
+  padding: 0 16px;
+  color: var(--ink);
+  background: var(--white);
+  outline: none;
+}
+
+.search button {
+  border: 0;
+  border-radius: 3px;
+  padding: 0 24px;
+  color: var(--white);
+  background: var(--ink);
+  cursor: pointer;
+}
+
+.properties {
+  padding: 80px 6%;
+}
+
+.section-heading h2 {
+  margin: 8px 0 32px;
+  font-family: Georgia, serif;
+  font-size: 44px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.card {
+  overflow: hidden;
+  background: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 12px 35px rgba(21, 45, 39, 0.08);
+}
+
+.card img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card h3 {
+  margin: 4px 0 8px;
+  font-family: Georgia, serif;
+  font-size: 22px;
+}
+
+.card p {
+  color: #65736f;
+  margin: 6px 0;
+}
+
+@media (max-width: 800px) {
+  nav {
+    display: none;
+  }
+
+  .hero {
+    min-height: 580px;
+    padding: 60px 24px;
+  }
+
+  .search {
+    grid-template-columns: 1fr;
+  }
+
+  .search button {
+    height: 48px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+const properties = [
+  {
+    name: 'Willow Modern',
+    location: 'Northwood',
+    type: 'House',
+    price: '$850,000',
+    beds: 4,
+    baths: 3,
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c',
+  },
+  {
+    name: 'The Grove Residence',
+    location: 'Riverside',
+    type: 'Townhouse',
+    price: '$620,000',
+    beds: 3,
+    baths: 2,
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea',
+  },
+  {
+    name: 'Parkside Apartment',
+    location: 'City Center',
+    type: 'Apartment',
+    price: '$410,000',
+    beds: 2,
+    baths: 2,
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0',
+  },
+];
+
+const grid = document.querySelector('#property-grid');
+
+function renderProperties(items) {
+  grid.innerHTML = items
+    .map(
+      (property) => `
+        <article class="card">
+          <img src="${property.image}" alt="${property.name}" />
+          <div class="card-body">
+            <p>${property.type} · ${property.location}</p>
+            <h3>${property.name}</h3>
+            <p>${property.beds} beds · ${property.baths} baths</p>
+            <strong>${property.price}</strong>
+          </div>
+        </article>
+      `,
+    )
+    .join('');
+}
+
+renderProperties(properties);
+
+document.querySelector('#search-form').addEventListener('submit', (event) => {
+  event.preventContent();
+  const location = document.querySelector('#location').value.toLowerCase();
+  const type = document.querySelector('#property-type').value;
+
+  const matches = properties.filter((property) => {
+    const matchesLocation =
+      !location || property.location.toLowerCase().includes(location);
+
+    const matchesType = !type || property.type === type;
+
+    return matchesLocation && matchesType;
+  });
+
+  renderProperties(matches);
+});
